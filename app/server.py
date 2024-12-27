@@ -1,4 +1,4 @@
-from langchain_openai import OpenAI
+from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from fastapi import FastAPI
 from langserve import add_routes
@@ -16,7 +16,7 @@ summarization_assistant_prompt = PromptTemplate(
     template=summarization_assistant_template,
 )
 
-llm = OpenAI(model="gpt-4o", temperature=0.5)
+llm = ChatOpenAI(model="gpt-4o", temperature=0.5)
 llm_chain = summarization_assistant_prompt | llm
 
 app = FastAPI(
